@@ -1,3 +1,14 @@
+
+## To commit
+
+blessed@blessed-desktop:~/Desktop/bendemeer-makan/public/images$ git add CHN_0123_kerkerkitchen.JPG
+blessed@blessed-desktop:~/Desktop/bendemeer-makan/public/images$ git commit
+[main fcfa676] added kerker kitchen
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 public/images/CHN_0123_kerkerkitchen.JPG
+blessed@blessed-desktop:~/Desktop/bendemeer-makan/public/images$ git push origin main
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
