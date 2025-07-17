@@ -1,0 +1,41 @@
+// import React, { useState } from 'react';
+// import Stall from './Stall'; // Adjust path if needed
+
+// interface StallData {
+//   type: string;
+//   unit: string;
+//   name: string;
+//   file: string;
+// }
+
+// const StallList: React.FC = () => {
+//   const [searchTerm, setSearchTerm] = useState('');
+  
+//   const filteredStalls = stallData.filter(stall =>
+//     stall.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//     stall.unit.includes(searchTerm)
+//   );
+
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         placeholder="Search by name or unit"
+//         value={searchTerm}
+//         onChange={(e) => setSearchTerm(e.target.value)}
+//       />
+//       <div>
+//         {filteredStalls.map((stall, index) => (
+//           <Stall
+//             key={index}
+//             image={`path/to/images/${stall.file}`}  // Adjust the path as needed
+//             unit={stall.unit}
+//             name={stall.name}
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default StallList;
