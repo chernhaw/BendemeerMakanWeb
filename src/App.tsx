@@ -1,8 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Stall from './component/Stall'; // Adjust path if needed
+import Stall from './component/Stall'; // no need to specify .tsx
 
 interface StallData {
   type: string;
@@ -12,54 +13,53 @@ interface StallData {
 }
 
 function App() {
-  const [searchStalls, setSearchStalls] = useState('')
+  const [searchStalls, setSearchStalls] = useState('');
 
-
- const stallData= [
-  { "type": "Chinese", "unit": "01-15", "name": "Indonesian Cuisine", "file": "Chinese_0115_IndonesiaCuisine.JPG" },
-  { "type": "Chinese", "unit": "01-16", "name": "Queens Town Dessert", "file": "CHN_0116_queenstown_dessert.JPG" },
-  { "type": "Chinese", "unit": "01-19", "name": "Granny Pancakes", "file": "CHN_0119_granny_pancakes.JPG" },
-  { "type": "Chinese", "unit": "01-22", "name": "Zhen Ji Mushroom Minced Meat Noodles", "file": "CHN_0122_zhenjimushroommincedmeatnoodles.JPG" },
-  { "type": "Chinese", "unit": "01-23", "name": "Ker Ker Kitchen", "file": "CHN_0123_kerkerkitchen.JPG" },
-  { "type": "Chinese", "unit": "01-23", "name": "Zhong Kee Wonton Noodle", "file": "CHN_0123_zhongkeewontonnoodle.JPG" },
-  { "type": "Chinese", "unit": "01-42", "name": "Bendemeer Prawn Noodle", "file": "CHN_0142_bendemeer_prawnnoodle.JPG" },
-  { "type": "Chinese", "unit": "01-43", "name": "29 Porridge and Soup", "file": "CHN_0143_29porridgeandsoup.JPG" },
-  { "type": "Chinese", "unit": "01-44", "name": "Tiong Bahru Fried Fish Ball", "file": "CHN_0144_tiongbahrufriedfishball.JPG" }
-]
+  const stallData: StallData[] = [
+    { type: "Chinese", unit: "01-15", name: "Indonesian Cuisine", file: "/images/CHN_0115_IndonesiaCuisine.JPG" },
+    { type: "Chinese", unit: "01-16", name: "Queens Town Dessert", file: "/images/CHN_0116_queenstown_dessert.JPG" },
+    { type: "Chinese", unit: "01-19", name: "Granny Pancakes", file: "/images/CHN_0119_granny_pancakes.JPG" },
+    { type: "Chinese", unit: "01-22", name: "Zhen Ji Mushroom Minced Meat Noodles", file: "/images/CHN_0122_zhenjimushroommincedmeatnoodles.JPG" },
+    { type: "Chinese", unit: "01-23", name: "Ker Ker Kitchen", file: "/images/CHN_0123_kerkerkitchen.JPG" },
+    { type: "Chinese", unit: "01-23", name: "Zhong Kee Wonton Noodle", file: "/images/CHN_0123_zhongkeewontonnoodle.JPG" },
+    { type: "Chinese", unit: "01-42", name: "Bendemeer Prawn Noodle", file: "/images/CHN_0142_bendemeer_prawnnoodle.JPG" },
+    { type: "Chinese", unit: "01-43", name: "29 Porridge and Soup", file: "/images/CHN_0143_29porridgeandsoup.JPG" },
+    { type: "Chinese", unit: "01-44", name: "Tiong Bahru Fried Fish Ball", file: "/images/CHN_0144_tiongbahrufriedfishball.JPG" }
+  ];
 
   const filteredStalls = stallData.filter(stall =>
     stall.name.toLowerCase().includes(searchStalls.toLowerCase()) ||
-    stall.type.includes(searchStalls) || stall.unit.includes(searchStalls) ||stall.name.includes(searchStalls)
+    stall.type.toLowerCase().includes(searchStalls.toLowerCase()) ||
+    stall.unit.toLowerCase().includes(searchStalls.toLowerCase())
   );
 
-
-  const handleStallSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchStalls = e.target.value;
-    setSearchStalls(searchStalls);
-    console.log(`Searching for stalls: ${searchStalls}`);
-    // Here you would typically filter the stalls based on the search input
-  }
-
-
   return (
-    <div>
+    <div className="container mt-4">
       <input
         type="text"
-        placeholder="Search by name or unit"
+        placeholder="Search by name, type, or unit"
         value={searchStalls}
         onChange={(e) => setSearchStalls(e.target.value)}
+        style={{ margin: '1rem 0', padding: '0.5rem', width: '100%' }}
       />
-      <div>
-        {filteredStalls.map((stall, index) => (
-          <Stall
-            key={index}
-            image={`path/to/images/${stall.file}`}  // Adjust the path as needed
-            unit={stall.unit}
-            name={stall.name}
-          />
-        ))}
-      </div>
+      <Row>
+  {filteredStalls.map((stall, index) => (
+    <div key={index} className="col-12 col-md-6 mb-4">
+      <Stall
+        image={stall.file}
+        unit={stall.unit}
+        name={stall.name}
+      />
     </div>
+  ))}
+</Row>
+
+    </div>
+  );
+}
+
+export default App;
+
   );
 };
   
